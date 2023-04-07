@@ -8,8 +8,7 @@ In the development of tutorial, we will try to explain the concepts and the code
 ## Background 
 ![11](https://user-images.githubusercontent.com/68922962/230664810-a6807531-24fe-4447-8be9-f1c8f32b97c8.JPG)
 
-
-**[Resurrection] is the story of a man attempting to return to the world of the “living”. Our story starts with Joe, an average, middle-aged man. He and his wife (Mary) have decided to have a working bee afternoon, completing a series of chores in the backyard of their suburban home with the help of their young son (Patrick). As dusk approaches, the family have almost completed their tasks. All that is left is for Joe to clear the gutters before the fire season starts. 
+Resurrection is the story of a man attempting to return to the world of the “living”. Our story starts with Joe, an average, middle-aged man. He and his wife (Mary) have decided to have a working bee afternoon, completing a series of chores in the backyard of their suburban home with the help of their young son (Patrick). As dusk approaches, the family have almost completed their tasks. All that is left is for Joe to clear the gutters before the fire season starts. 
 
 Joe places his ladder carefully against their home and ascends. He knows he needs to be careful and approaches the task with well-deserved caution. Patrick, being young, doesn’t understand the precautions taken and simply wants to play with his dad. Mary looks on in horror as Patrick runs to his father, bumping the ladder and knocking Joe to the ground. Joe suffers a massive head injury and as a result slips into a coma. 
 
