@@ -17,14 +17,12 @@ using the C++ structure
 
 which holds different properties in procedural version of the game.
 
-  ---------------------------------------------------------------------------------------------
-  ---------------------------------------------------------------------------------------------
+![image](https://user-images.githubusercontent.com/68922962/230660137-f3a8cc1c-21d5-4ba6-8f2f-12549872e447.png)
 
-  ---------------------------------------------------------------------------------------------
 
 **User Defined Data Types:**
 
-*[Struct:]{.underline}*
+*[Struct:]
 
 Structures (also called structs) are a way to group several related
 variables into one place. Structures
@@ -56,244 +54,37 @@ to predefine the types of Obstacles and the Treasures in the game.
 
 **Game:**\
 Game is parent structure, which hold other structures and global game
-data.
+data.![1111](https://user-images.githubusercontent.com/68922962/230660876-5bacf7ee-c274-4bc6-a274-99e621d26c17.JPG)
 
-+-----------------------+-----------------------+-----------------------+
-| > **Variable**        | > **Data Type**       | > **Definition**      |
-+=======================+=======================+=======================+
-| > World               | > World               | > This is a structure |
-|                       |                       | > which hold the      |
-|                       |                       | > properties of the   |
-|                       |                       | > level               |
-+-----------------------+-----------------------+-----------------------+
-| > Status              | > Bool                | > This Boolean        |
-|                       |                       | > variable holds      |
-|                       |                       | > binary value which  |
-|                       |                       | > defines the status  |
-|                       |                       | > of the game         |
-+-----------------------+-----------------------+-----------------------+
 
 **World:**\
 World is the level which player is playing, which also a structure
 contains all the variables.
 
-+-----------------------+-----------------------+-----------------------+
-| > **Variable**        | > **Data Type**       | > **Definition**      |
-+=======================+=======================+=======================+
-| > Player              | > Player              | > This is a structure |
-|                       |                       | > which hold the      |
-|                       |                       | > properties of the   |
-|                       |                       | > player              |
-+-----------------------+-----------------------+-----------------------+
-| > Obstacles           | > vector\<obstacle\>  | > This is a vector    |
-|                       |                       | > obstacle structure  |
-|                       |                       | > as single world can |
-|                       |                       | > have more than one  |
-|                       |                       | > obstacle.           |
-+-----------------------+-----------------------+-----------------------+
-| > Coins               | > vector\<coin\>      | > This is a vector    |
-|                       |                       | > coin structure as   |
-|                       |                       | > single world can    |
-|                       |                       | > have more than one  |
-|                       |                       | > coin.               |
-+-----------------------+-----------------------+-----------------------+
-| > Treasure            | > vector\<treasure\>  | > This is a vector    |
-|                       |                       | > treasure structure  |
-|                       |                       | > as single world can |
-|                       |                       | > have more than one  |
-|                       |                       | > treasure.           |
-+-----------------------+-----------------------+-----------------------+
-| > Background_X        | > Double              | > This variable holds |
-|                       |                       | > the value of X      |
-|                       |                       | > position of the     |
-|                       |                       | > background.         |
-+-----------------------+-----------------------+-----------------------+
-| Background_Y          | > Double              | > This variable holds |
-| \[double\]            |                       | > the value of Y      |
-|                       |                       | > position of the     |
-|                       |                       | > background.         |
-+-----------------------+-----------------------+-----------------------+
-| > Score               | > Integer             | > This variable holds |
-|                       |                       | > the value of the    |
-|                       |                       | > score of the        |
-|                       |                       | > current level.      |
-+-----------------------+-----------------------+-----------------------+
-| > Backgroud_Static    | > Bitmap              | > This variable holds |
-|                       |                       | > the image of the    |
-|                       |                       | > static background   |
-|                       |                       | > which does not move |
-|                       |                       | > along with the      |
-|                       |                       | > player.             |
-+-----------------------+-----------------------+-----------------------+
-| > Backgroud_Dynamic   | > Bitmap              | > This variable holds |
-|                       |                       | > the image of the    |
-|                       |                       | > dynamic background  |
-|                       |                       | > which moves along   |
-|                       |                       | > with the player.    |
-+-----------------------+-----------------------+-----------------------+
-| > Backgroud_Sound     | > String              | > This variable holds |
-|                       |                       | > the name of the     |
-|                       |                       | > background music.   |
-+-----------------------+-----------------------+-----------------------+
-| > Status              | > Bool                | > This Boolean        |
-|                       |                       | > variable holds      |
-|                       |                       | > binary value which  |
-|                       |                       | > defines the status  |
-|                       |                       | > of the current      |
-|                       |                       | > level               |
-+-----------------------+-----------------------+-----------------------+
-| > Game_Timer          | > Integer             | > This variable holds |
-|                       |                       | > the elapsed time of |
-|                       |                       | > the current level.  |
-+-----------------------+-----------------------+-----------------------+
-| > Camera_Move         | > Integer             | > This variable holds |
-|                       |                       | > the value of camera |
-|                       |                       | > position which is   |
-|                       |                       | > used to position    |
-|                       |                       | > the background and  |
-|                       |                       | > other dynamic       |
-|                       |                       | > objects on the      |
-|                       |                       | > scene.              |
-+-----------------------+-----------------------+-----------------------+
+![2](https://user-images.githubusercontent.com/68922962/230661076-c927e28e-3a62-424d-8ce0-896ec1af537a.JPG)
+
 
 **Player:**
 
 Player is the structure of the main character sprite.
+![3](https://user-images.githubusercontent.com/68922962/230661229-0e9ff216-0bcb-4ee0-bd13-ab95b21f8d07.JPG)
 
-+-----------------------+-----------------------+-----------------------+
-| > **Variable**        | > **Data Type**       | > **Definition**      |
-+=======================+=======================+=======================+
-| > Life                | > Integer             | > This variable holds |
-|                       |                       | > the value of        |
-|                       |                       | > player's life which |
-|                       |                       | > will be deducted if |
-|                       |                       | > character hits the  |
-|                       |                       | > obstacle.           |
-+-----------------------+-----------------------+-----------------------+
-| > Stand               | > Bitmap              | > This variable holds |
-|                       |                       | > the default image   |
-|                       |                       | > of the player when  |
-|                       |                       | > player is not       |
-|                       |                       | > moving.             |
-+-----------------------+-----------------------+-----------------------+
-| > X                   | > Double              | > This variable holds |
-|                       |                       | > X position of the   |
-|                       |                       | > player.             |
-+-----------------------+-----------------------+-----------------------+
-| > Y                   | > Double              | > This variable holds |
-|                       |                       | > Y position of the   |
-|                       |                       | > player.             |
-+-----------------------+-----------------------+-----------------------+
-| > Jump_Action         | > Bool                | > This Boolean        |
-|                       |                       | > variable holds      |
-|                       |                       | > binary value which  |
-|                       |                       | > defines if player   |
-|                       |                       | > is performing a     |
-|                       |                       | > jump action.        |
-+-----------------------+-----------------------+-----------------------+
-| > Jump_Anim           | > Animation           | > This variable holds |
-|                       |                       | > the animation       |
-|                       |                       | > sequence of the     |
-|                       |                       | > player's jump       |
-|                       |                       | > action.             |
-+-----------------------+-----------------------+-----------------------+
-| > Run_Anim            | > Animation           | > This variable holds |
-|                       |                       | > the animation       |
-|                       |                       | > sequence of the     |
-|                       |                       | > player's run        |
-|                       |                       | > action.             |
-+-----------------------+-----------------------+-----------------------+
-| > Direction           | > Bool                | > This Boolean        |
-|                       |                       | > variable defines    |
-|                       |                       | > which direction the |
-|                       |                       | > player is moving.   |
-+-----------------------+-----------------------+-----------------------+
 
 **Obstacle:**
 
 Obstacle is the structure of the enemy sprite.
 
-+-----------------------+-----------------------+-----------------------+
-| > **Variable**        | > **Data Type**       | > **Definition**      |
-+=======================+=======================+=======================+
-| > Obstacle_Type       | > Enum                | > This enumeration    |
-|                       |                       | > defines the type of |
-|                       |                       | > the obstacle.       |
-+-----------------------+-----------------------+-----------------------+
-| > Obsticle_Anim       | > Animation           | > This variable holds |
-|                       |                       | > the animation       |
-|                       |                       | > sequence of the     |
-|                       |                       | > obstacle.           |
-+-----------------------+-----------------------+-----------------------+
-| > Obstacle_Sound      | > String              | > This variable holds |
-|                       |                       | > the name of the     |
-|                       |                       | > sound which will be |
-|                       |                       | > played when player  |
-|                       |                       | > hits the obstacle.  |
-+-----------------------+-----------------------+-----------------------+
-| > X                   | > Double              | > This variable holds |
-|                       |                       | > X position of the   |
-|                       |                       | > obstacle.           |
-+-----------------------+-----------------------+-----------------------+
-| > Y                   | > Double              | > This variable holds |
-|                       |                       | > Y position of the   |
-|                       |                       | > obstacle.           |
-+-----------------------+-----------------------+-----------------------+
+![image](https://user-images.githubusercontent.com/68922962/230661359-47dad486-9177-4b8b-8935-f9df4953fc84.png)
+
 
 **Coin:**
 
 Coin is the structure of the gold coin sprite.
 
-+-----------------------+-----------------------+-----------------------+
-| > **Variable**        | > **Data Type**       | > **Definition**      |
-+=======================+=======================+=======================+
-| > Coin_Anim           | > Animation           | > This variable holds |
-|                       |                       | > the animation       |
-|                       |                       | > sequence of the     |
-|                       |                       | > coin.               |
-+-----------------------+-----------------------+-----------------------+
-| > Coin_Sound          | > String              | > This variable holds |
-|                       |                       | > the name of the     |
-|                       |                       | > sound\              |
-|                       |                       | > which will be       |
-|                       |                       | > played when player  |
-|                       |                       | > hits the coin.      |
-+-----------------------+-----------------------+-----------------------+
-| > X                   | > Double              | > This variable holds |
-|                       |                       | > X position of the   |
-|                       |                       | > coin.               |
-+-----------------------+-----------------------+-----------------------+
-| > Y                   | > Double              | > This variable holds |
-|                       |                       | > Y position of the   |
-|                       |                       | > coin.               |
-+-----------------------+-----------------------+-----------------------+
+![5](https://user-images.githubusercontent.com/68922962/230661479-5b4acf95-e7b7-4348-a3ef-808f0961a4c2.JPG)
+
 
 **Treasure:**\
 Treasure is the structure of the treasure sprite.
+![6](https://user-images.githubusercontent.com/68922962/230661582-ebdae5e8-4452-4fa5-86a2-5f5e3cd652e4.JPG)
 
-+-----------------------+-----------------------+-----------------------+
-| > **Variable**        | > **Data Type**       | > **Definition**      |
-+=======================+=======================+=======================+
-| > Treasure_Type       | > Enum                | > This enumeration    |
-|                       |                       | > defines the type of |
-|                       |                       | > the treasure.       |
-+-----------------------+-----------------------+-----------------------+
-| > Treasure_Anim       | > Animation           | > This variable holds |
-|                       |                       | > the animation       |
-|                       |                       | > sequence of the     |
-|                       |                       | > treasure.           |
-+-----------------------+-----------------------+-----------------------+
-| > Treasure_Sound      | > String              | > This variable holds |
-|                       |                       | > the name of the     |
-|                       |                       | > sound which will be |
-|                       |                       | > played when player  |
-|                       |                       | > hits the treasure.  |
-+-----------------------+-----------------------+-----------------------+
-| > X                   | > Double              | > This variable holds |
-|                       |                       | > X position of the   |
-|                       |                       | > treasure.           |
-+-----------------------+-----------------------+-----------------------+
-| > Y                   | > Double              | > This variable holds |
-|                       |                       | > Y position of the   |
-|                       |                       | > treasure.           |
-+-----------------------+-----------------------+-----------------------+
