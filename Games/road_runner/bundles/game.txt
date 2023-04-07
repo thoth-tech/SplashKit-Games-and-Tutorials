@@ -1,0 +1,5 @@
+BITMAP,person,Person.jpg
+BITMAP,person1,Person1.png
+BITMAP, background, Background.png
+BITMAP, bg, BG.png
+BITMAP, bg1, BG1.png
