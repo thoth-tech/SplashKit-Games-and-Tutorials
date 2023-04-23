@@ -2,23 +2,10 @@
 #include "splashkit.h"
 #include <math.h>
 
-int main();
+const double GRAVITY = 0.5;
+const double JUMP_STRENGTH = 15;
 
-struct Ground
-{
-    double x, y;
-    double width, height;
-};
-
-struct Player
-{
-    double x, y;
-    double width, height;
-    double velocity_x, velocity_y;
-    bool on_ground;
-};
-
-bool check_collision(const Player &player, const Ground &ground)
+bool check_collision(const player_data &player, const Ground &ground)
 {
     return player.x < ground.x + ground.width &&
            player.x + player.width > ground.x &&
@@ -39,6 +26,11 @@ bitmap bitmap_player(character_b kind)
     }
 }
 
+void draw_ground(const Ground &ground)
+{
+    fill_rectangle(ground.ground_color, ground.x, ground.y, ground.width, ground.height);
+}
+
 player_data new_player()
 {
     player_data result;
@@ -52,8 +44,16 @@ player_data new_player()
 
     result.kind = PERSON;
 
-    sprite_set_x(result.player_sprite, 0);
-    sprite_set_y(result.player_sprite, 650);
+    result.x = 0;
+    result.y = 650;
+    result.width = sprite_width(result.player_sprite);
+    result.height = sprite_height(result.player_sprite);
+    result.velocity_x = 0;
+    result.velocity_y = 0;
+    result.on_ground = false;
+
+    sprite_set_x(result.player_sprite, result.x);
+    sprite_set_y(result.player_sprite, result.y);
 
     return result;
 }
@@ -63,9 +63,27 @@ void draw_player(const player_data &player_to_draw)
     draw_sprite(player_to_draw.player_sprite);
 }
 
-void update_player(player_data &player_to_update)
+void update_player(player_data &player_to_update, const Ground &ground)
 {
     update_sprite(player_to_update.player_sprite);
+
+    // Apply gravity
+    player_to_update.velocity_y += GRAVITY;
+    player_to_update.y += player_to_update.velocity_y;
+    sprite_set_y(player_to_update.player_sprite, player_to_update.y);
+
+    // Check for ground collision
+    if (check_collision(player_to_update, ground))
+    {
+        player_to_update.on_ground = true;
+        player_to_update.velocity_y = 0;
+        player_to_update.y = ground.y - player_to_update.height;
+        sprite_set_y(player_to_update.player_sprite, player_to_update.y);
+    }
+    else
+    {
+        player_to_update.on_ground = false;
+    }
 
     double left_edge = camera_x() + SCREEN_BORDER;
     double right_edge = left_edge + screen_width() - 2 * SCREEN_BORDER;
@@ -105,5 +123,11 @@ void handle_input(player_data &player)
         sprite_hide_layer(player.player_sprite, static_cast<int>(PERSON1));
 
         move_sprite(player.player_sprite, {1, 0}, 3);
+    }
+    if (key_typed(SPACE_KEY) && player.on_ground)
+    {
+        player.velocity_y = -JUMP_STRENGTH;
+        player.y += player.velocity_y;
+        sprite_set_y(player.player_sprite, player.y);
     }
 }
