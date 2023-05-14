@@ -74,18 +74,6 @@ float_data new_float()
     result.float_sprite2 = create_sprite(floating2);
     result.float_sprite3 = create_sprite(floating3);
 
-    sprite_set_x(result.float_sprite, 0);
-    sprite_set_y(result.float_sprite, 450);
-
-    sprite_set_x(result.float_sprite1, 85 + sprite_width(result.float_sprite));
-    sprite_set_y(result.float_sprite1, 250);
-
-    sprite_set_x(result.float_sprite2, 390 + sprite_width(result.float_sprite));
-    sprite_set_y(result.float_sprite2, 450);
-
-    sprite_set_x(result.float_sprite3, 870);
-    sprite_set_y(result.float_sprite3, 200);
-
     return result;
 }
 
@@ -100,6 +88,36 @@ void draw_float_brick(const float_data &float_to_draw)
     draw_sprite(float_to_draw.float_sprite1);
     draw_sprite(float_to_draw.float_sprite2);
     draw_sprite(float_to_draw.float_sprite3);
+}
+
+void level1(const float_data &float_to_draw)
+{
+    sprite_set_x(float_to_draw.float_sprite, 0);
+    sprite_set_y(float_to_draw.float_sprite, 450);
+
+    sprite_set_x(float_to_draw.float_sprite1, 85 + sprite_width(float_to_draw.float_sprite));
+    sprite_set_y(float_to_draw.float_sprite1, 250);
+
+    sprite_set_x(float_to_draw.float_sprite2, 390 + sprite_width(float_to_draw.float_sprite));
+    sprite_set_y(float_to_draw.float_sprite2, 450);
+
+    sprite_set_x(float_to_draw.float_sprite3, 870);
+    sprite_set_y(float_to_draw.float_sprite3, 200);
+}
+
+void level2(const float_data &result)
+{
+    sprite_set_x(result.float_sprite, 200);
+    sprite_set_y(result.float_sprite, 450);
+
+    sprite_set_x(result.float_sprite1, 185 + sprite_width(result.float_sprite));
+    sprite_set_y(result.float_sprite1, 250);
+
+    sprite_set_x(result.float_sprite2, 500 + sprite_width(result.float_sprite));
+    sprite_set_y(result.float_sprite2, 390);
+
+    sprite_set_x(result.float_sprite3, 970);
+    sprite_set_y(result.float_sprite3, 500);
 }
 
 void update_player(player_data &player_to_update, const Ground &ground)
@@ -177,14 +195,14 @@ void handle_input(player_data &player)
         sprite_show_layer(player.player_sprite, static_cast<int>(PERSON1));
         sprite_hide_layer(player.player_sprite, static_cast<int>(PERSON));
 
-        move_sprite(player.player_sprite, {1, 0}, -3);
+        move_sprite(player.player_sprite, {1, 0}, -4);
     }
     if (key_down(RIGHT_KEY))
     {
         sprite_show_layer(player.player_sprite, static_cast<int>(PERSON));
         sprite_hide_layer(player.player_sprite, static_cast<int>(PERSON1));
 
-        move_sprite(player.player_sprite, {1, 0}, 3);
+        move_sprite(player.player_sprite, {1, 0}, 4);
     }
     if (key_typed(SPACE_KEY) && player.on_ground)
     {

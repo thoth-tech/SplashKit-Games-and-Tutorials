@@ -3,7 +3,6 @@
 #include "timers.h"
 
 int score = 0;
-int count = 3;
 
 bitmap bitmap_power(power_b kind)
 {
@@ -92,7 +91,7 @@ void apply_powers(power_data &powers)
     }
 }
 
-void score_hud(power_data &power)
+void score_hud(power_data &power, player_data &player)
 {
     font my_font = load_font("Magma", "Magma.ttf");
 
@@ -100,27 +99,59 @@ void score_hud(power_data &power)
     draw_text("HEALTH:", COLOR_BLACK, my_font, 20, 260, 20, option_to_screen());
 
     int a = 300;
-    for (int i = 1; i <= count; i++)
+
+    if (player.level == 1)
     {
-        draw_bitmap("heart", a, -20, option_to_screen(option_scale_bmp(0.5, 0.5)));
-        a += 50;
+        for (int i = 1; i <= player.count; i++)
+        {
+            draw_bitmap("heart", a, -20, option_to_screen(option_scale_bmp(0.5, 0.5)));
+            a += 50;
+        }
+
+        if (score >= 1000)
+        {
+            string message = "Level 1  UP";
+
+            // Calculate the text dimensions
+            float x = text_width(message, my_font, 50);
+            float y = text_height(message, my_font, 50);
+
+            // Calculate the coordinates of the text
+            float width = (screen_width() - x) / 2;
+            float heigth = (screen_height() - y) / 2;
+
+            draw_text("LEVEL 1  UP", COLOR_BLACK, my_font, 100, width, heigth, option_to_screen());
+            play_sound_effect("level");
+            score = 0;
+            player.level = 3;
+            delay(2000);
+        }
     }
-
-    if (score >= 1000)
+    if (player.level == 3)
     {
-        // play_sound_effect("level");
+        for (int i = 1; i <= player.count; i++)
+        {
+            draw_bitmap("heart", a, -20, option_to_screen(option_scale_bmp(0.5, 0.5)));
+            a += 50;
+        }
 
-        string message = "Level 1  UP";
+        if (score >= 500)
+        {
+            string message = "YOU WON";
 
-        // Calculate the text dimensions
-        float x = text_width(message, my_font, 50);
-        float y = text_height(message, my_font, 50);
+            // Calculate the text dimensions
+            float x = text_width(message, my_font, 50);
+            float y = text_height(message, my_font, 50);
 
-        // Calculate the coordinates of the text
-        float width = (screen_width() - x) / 2;
-        float heigth = (screen_height() - y) / 2;
+            // Calculate the coordinates of the text
+            float width = (screen_width() - x) / 2;
+            float heigth = (screen_height() - y) / 2;
 
-        draw_text("LEVEL 1  UP", COLOR_BLACK, my_font, 100, width, heigth, option_to_screen());
+            draw_text("YOU WON 🥳🍾", COLOR_BLACK, my_font, 100, width, heigth, option_to_screen());
+            play_sound_effect("level");
+            player.win = true;
+            delay(2000);
+        }
     }
 }
 
