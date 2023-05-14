@@ -1,5 +1,5 @@
 #include "splashkit.h"
-#include "player1.h"
+#include "monster.h"
 
 using namespace std;
 
@@ -26,6 +26,6 @@ power_data new_power();
 
 void draw_power(const power_data &power_to_draw);
 
-void score_hud(power_data &power);
+void score_hud(power_data &power, player_data &player);
 
 void update_power(player_data &player, power_data &power);

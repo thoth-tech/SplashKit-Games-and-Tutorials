@@ -41,6 +41,9 @@ int main()
     player_data player;
     player = new_player();
 
+    mons_data mons;
+    mons = monster();
+
     float_data brick;
     brick = new_float();
 
@@ -55,7 +58,7 @@ int main()
 
     stop_sound_effect("Lobby");
 
-    while (key_up(ESCAPE_KEY))
+    while (key_up(ESCAPE_KEY) && player.level != 3)
     {
         process_events();
         handle_input(player);
@@ -70,7 +73,9 @@ int main()
 
         draw_bitmap("background", 0, 0, option_to_screen(option_scale_bmp(1, 1)));
 
-        score_hud(power);
+        level1(brick);
+
+        score_hud(power, player);
 
         draw_ground(ground);
 
@@ -80,6 +85,73 @@ int main()
 
         draw_power(power);
 
+        refresh_screen(60);
+    }
+
+    while (player.level == 3)
+    {
+        write_line(player.level);
+        process_events();
+
+        handle_input_mons(mons);
+
+        handle_input(player);
+
+        update_mons(mons);
+
+        update_player(player, ground);
+
+        update_float_mons(player, mons);
+
+        update_float(brick, player);
+
+        update_power(player, power);
+
+        clear_screen();
+
+        draw_bitmap("background", 0, 0, option_to_screen(option_scale_bmp(1, 1)));
+
+        score_hud(power, player);
+
+        draw_ground(ground);
+
+        draw_float_brick(brick);
+
+        draw_player(player);
+
+        draw_mons(mons);
+
+        draw_power(power);
+
+        level2(brick);
+
+        if (player.close == true)
+        {
+            font my_font = load_font("Magma", "Magma.ttf");
+
+            string message = "YOU LOSS";
+
+            // Calculate the text dimensions
+            float x = text_width(message, my_font, 50);
+            float y = text_height(message, my_font, 50);
+
+            // Calculate the coordinates of the text
+            float width = (screen_width() - x) / 2;
+            float heigth = (screen_height() - y) / 2;
+
+            draw_text("YOU LOSS 😭😵", COLOR_BLACK, my_font, 100, width, heigth, option_to_screen());
+
+            write_line("you LOSS");
+
+            play_sound_effect("level");
+
+            delay(4000);
+            break;
+        }
+        if (player.win == true)
+        {
+            break;
+        }
         refresh_screen(60);
     }
 
