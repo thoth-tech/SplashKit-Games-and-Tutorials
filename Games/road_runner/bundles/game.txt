@@ -1,5 +1,14 @@
-BITMAP,person,Person.jpg
-BITMAP,person1,Person1.png
+BITMAP, person,Person.png
+BITMAP, person1,Person1.png
 BITMAP, background, Background.png
 BITMAP, bg, BG.png
 BITMAP, bg1, BG1.png
+BITMAP, wall, Wall.jpg
+BITMAP, float_G, Float_G.png
+BITMAP, coin_gold, coin_gold.png
+BITMAP, coin_bronz, coin_bronz.png
+BITMAP, coin_silver, coin_silver.png
+BITMAP, heart, heart.png
+BITMAP, menu, menu.png
+BITMAP, monster, Monster.png
+BITMAP, monster1, Monster1.jpg
