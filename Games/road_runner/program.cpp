@@ -2,6 +2,7 @@
 #include "Level1.h"
 
 using namespace std;
+bool win_close = false;
 
 void load_resources()
 {
@@ -13,7 +14,6 @@ void load_resources()
 void menu()
 {
     font my_font = load_font("Renegade_Pursuit", "Renegade_Pursuit.otf");
-
     draw_bitmap("menu", (screen_width() - bitmap_width("menu")) / 2, (screen_height() - bitmap_height("menu")) / 2, option_to_screen(option_scale_bmp(1, 1)));
     draw_text("PRESS SPACE TO START", COLOR_BLACK, my_font, 60, (screen_width() - text_width("PRESS SPACE TO START", "Renegade_Pursuit", 60)) / 2, ((screen_height() - text_height("PRESS SPACE TO START", "Renegade_Pursuit", 60)) / 2) + 200, option_to_screen());
 }
@@ -22,135 +22,161 @@ int main()
 {
     load_sound_effect("Lobby", "Lobby.wav");
 
-    play_sound_effect("Lobby");
-
     open_window("Game", WIDTH, HEIGHT);
     load_resources();
 
-    while (key_up(SPACE_KEY))
+    while (win_close == false)
     {
-        process_events();
+        play_sound_effect("Lobby");
 
-        clear_screen(COLOR_ANTIQUE_WHITE);
+        while (key_up(SPACE_KEY))
+        {
+            process_events();
 
-        menu();
+            clear_screen(COLOR_ANTIQUE_WHITE);
 
-        refresh_screen(60);
-    }
+            menu();
 
-    player_data player;
-    player = new_player();
+            if (quit_requested())
+            {
+                win_close = true;
+                break;
+            }
 
-    mons_data mons;
-    mons = monster();
+            refresh_screen(60);
+        }
 
-    float_data brick;
-    brick = new_float();
+        player_data player;
+        player = new_player();
 
-    power_data power;
-    power = new_power();
+        mons_data mons;
+        mons = monster();
 
-    Ground ground;
-    ground.x = 0;
-    ground.y = 680;
-    ground.width = 1600;
-    ground.height = 50;
+        float_data brick;
+        brick = new_float();
 
-    stop_sound_effect("Lobby");
+        power_data power;
+        power = new_power();
 
-    while (key_up(ESCAPE_KEY) && player.level != 3)
-    {
-        process_events();
-        handle_input(player);
+        Ground ground;
+        ground.x = 0;
+        ground.y = 680;
+        ground.width = 1600;
+        ground.height = 50;
 
-        update_player(player, ground);
+        stop_sound_effect("Lobby");
 
-        update_float(brick, player);
+        while (win_close == false and player.level == 1)
+        {
+            process_events();
 
-        update_power(player, power);
+            handle_input(player);
 
-        clear_screen();
+            update_player(player, ground);
 
-        draw_bitmap("background", 0, 0, option_to_screen(option_scale_bmp(1, 1)));
+            update_float(brick, player);
 
-        level1(brick);
+            update_power(player, power);
 
-        score_hud(power, player);
+            clear_screen();
 
-        draw_ground(ground);
+            draw_bitmap("background", 0, 0, option_to_screen(option_scale_bmp(1, 1)));
 
-        draw_player(player);
+            level1(brick);
 
-        draw_float_brick(brick);
+            score_hud(power, player);
 
-        draw_power(power);
+            draw_ground(ground);
 
-        refresh_screen(60);
-    }
+            draw_player(player);
 
-    while (player.level == 3)
-    {
-        write_line(player.level);
-        process_events();
+            draw_float_brick(brick);
 
-        handle_input_mons(mons);
+            draw_power(power);
 
-        handle_input(player);
+            refresh_screen(60);
+        }
 
-        update_mons(mons);
+        while (win_close == false and player.level == 3)
+        {
+            process_events();
 
-        update_player(player, ground);
+            handle_input_mons(mons);
 
-        update_float_mons(player, mons);
+            handle_input(player);
 
-        update_float(brick, player);
+            update_mons(mons);
 
-        update_power(player, power);
+            update_player(player, ground);
 
-        clear_screen();
+            update_float_mons(player, mons);
 
-        draw_bitmap("background", 0, 0, option_to_screen(option_scale_bmp(1, 1)));
+            update_float(brick, player);
 
-        score_hud(power, player);
+            update_power(player, power);
 
-        draw_ground(ground);
+            clear_screen();
 
-        draw_float_brick(brick);
+            draw_bitmap("background", 0, 0, option_to_screen(option_scale_bmp(1, 1)));
 
-        draw_player(player);
+            score_hud(power, player);
 
-        draw_mons(mons);
+            draw_ground(ground);
 
-        draw_power(power);
+            draw_float_brick(brick);
 
-        level2(brick);
+            draw_player(player);
+
+            draw_mons(mons);
+
+            draw_power(power);
+
+            level3(brick);
+
+            if (player.close == true)
+            {
+                delay(2000);
+                break;
+            }
+            if (player.win == true)
+            {
+                delay(2000);
+                break;
+            }
+            refresh_screen(60);
+        }
 
         if (player.close == true)
         {
-            font my_font = load_font("Magma", "Magma.ttf");
+            float width = (screen_width() - bitmap_width("loss")) / 2;
+            float heigth = (screen_height() - bitmap_height("loss")) / 2;
 
-            string message = "YOU LOSS";
+            clear_screen(COLOR_BLACK);
 
-            // Calculate the text dimensions
-            float x = text_width(message, my_font, 50);
-            float y = text_height(message, my_font, 50);
+            draw_bitmap("loss", width, heigth);
 
-            // Calculate the coordinates of the text
-            float width = (screen_width() - x) / 2;
-            float heigth = (screen_height() - y) / 2;
+            write_line("YOU LOSS");
 
-            draw_text("YOU LOSS 😭😵", COLOR_BLACK, my_font, 100, width, heigth, option_to_screen());
+            refresh_screen(60);
 
-            write_line("you LOSS");
-
-            play_sound_effect("level");
-
-            delay(4000);
-            break;
+            delay(2000);
         }
         if (player.win == true)
         {
-            break;
+            delay(2000);
+
+            float width = (screen_width() - bitmap_width("won")) / 2;
+            float heigth = (screen_height() - bitmap_height("won")) / 2;
+
+            clear_screen(COLOR_BLACK);
+
+            draw_bitmap("won", width, heigth);
+
+            write_line("YOU WON");
+
+            refresh_screen(60);
+
+            delay(2000);
         }
         refresh_screen(60);
     }

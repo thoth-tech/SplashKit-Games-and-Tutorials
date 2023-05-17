@@ -110,21 +110,24 @@ void score_hud(power_data &power, player_data &player)
 
         if (score >= 1000)
         {
-            string message = "Level 1  UP";
+            delay(2000);
+            float width = (screen_width() - bitmap_width("levelup")) / 2;
+            float heigth = (screen_height() - bitmap_height("levelup")) / 2;
 
-            // Calculate the text dimensions
-            float x = text_width(message, my_font, 50);
-            float y = text_height(message, my_font, 50);
+            clear_screen(COLOR_BLACK);
 
-            // Calculate the coordinates of the text
-            float width = (screen_width() - x) / 2;
-            float heigth = (screen_height() - y) / 2;
+            draw_bitmap("levelup", width, heigth);
 
-            draw_text("LEVEL 1  UP", COLOR_BLACK, my_font, 100, width, heigth, option_to_screen());
+            write_line("Level up");
+
+            refresh_screen(60);
+
             play_sound_effect("level");
+
+            delay(2000);
+
             score = 0;
             player.level = 3;
-            delay(2000);
         }
     }
     if (player.level == 3)
@@ -135,22 +138,10 @@ void score_hud(power_data &power, player_data &player)
             a += 50;
         }
 
-        if (score >= 500)
+        if (score >= 1000)
         {
-            string message = "YOU WON";
-
-            // Calculate the text dimensions
-            float x = text_width(message, my_font, 50);
-            float y = text_height(message, my_font, 50);
-
-            // Calculate the coordinates of the text
-            float width = (screen_width() - x) / 2;
-            float heigth = (screen_height() - y) / 2;
-
-            draw_text("YOU WON 🥳🍾", COLOR_BLACK, my_font, 100, width, heigth, option_to_screen());
-            play_sound_effect("level");
             player.win = true;
-            delay(2000);
+            score = 0;
         }
     }
 }

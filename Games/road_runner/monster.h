@@ -7,22 +7,17 @@ enum character_mons
 {
     MONSTER,
     MONSTER1,
-    FGround1
+    FGround1,
+    SPIKE
 };
 
 struct mons_data
 {
     sprite mons_sprite;
+    sprite spiked;
     character_mons kind_mons;
 
     double x, y;
-    bool on_ground;
-};
-
-struct mons_float_data
-{
-    sprite float_sprite, float_sprite1, float_sprite2, float_sprite3, float_sprite4;
-    character_b kind;
 };
 
 mons_data monster();
